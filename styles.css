@@ -1,0 +1,18 @@
+body{
+    background-color:rgb(48, 56, 204);
+    margin: 0;
+}
+#clockContainer{
+    display: flex;
+    justify-content: center;
+    padding-top: 200px;
+}
+#clock{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    letter-spacing: 5px;
+    backdrop-filter: blur(20px);
+}
