@@ -59,3 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
     updateClock();
     setInterval(updateClock, 1000);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    setRandomBackground();
+    setClockPosition();
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Sidebar toggle logic
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+    });
+});
