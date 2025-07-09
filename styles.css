@@ -1,14 +1,32 @@
 body{
+    opacity: 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
     color: white;
     margin: 0;
+    transition: opacity 0.5s cubic-bezier(.4,1.2,.6,1);
+    position: relative;
+    z-index: 1;
+}
+body.loaded {
+    opacity: 1;
+}
+#bg-fade-overlay {
+    position: fixed;
+    z-index: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.5s cubic-bezier(.4,1.2,.6,1);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 #clockContainer{
     position: fixed;
-    transition: all 0.5s ease-in-out;
+    transition: opacity 1.5s cubic-bezier(.4,1.2,.6,1);
 }
 #clock{
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -46,8 +64,8 @@ body{
 
 #sidebarToggle {
     position: absolute;
-    left: -70px;
-    top: 20px;
+    left: -80px;
+    top: 25px;
     width: 58px;
     height: 58px;
     border-radius: 50%;
@@ -74,6 +92,11 @@ body{
 
 #sidebarToggle svg {
     display: block;
+    transition: transform 0.5s cubic-bezier(.4,1.2,.6,1);
+}
+
+#sidebar.open #sidebarIcon {
+    transform: rotate(90deg);
 }
 
 #sidebarContent {
@@ -110,4 +133,44 @@ body{
     font-weight: bold;
     transform: scale(1.1);
     text-shadow: 0 2px 8px rgba(0,0,0,0.18), 0 0 1px #ffd700;
+}
+
+#BgShuffle {
+    position: absolute;
+    left: 30px;
+    bottom: 25px;
+    z-index: 1001;
+}
+
+#shuffleButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 18px;
+    height: 48px;
+    border-radius: 24px;
+    border: none;
+    background: rgba(104, 104, 104, 0.85);
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: -2px 2px 12px rgba(0,0,0,0.18);
+    transition:
+        background 0.3s cubic-bezier(.4,1.2,.6,1),
+        box-shadow 0.3s cubic-bezier(.4,1.2,.6,1),
+        transform 0.3s cubic-bezier(.4,1.2,.6,1);
+}
+
+#shuffleButton:hover {
+    background: rgba(60,60,80,0.92);
+    box-shadow: -2px 4px 20px rgba(0,0,0,0.22);
+    transform: scale(1.05);
+}
+
+#shuffleButton svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
 }

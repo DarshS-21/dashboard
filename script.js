@@ -16,6 +16,12 @@ function setClockPosition() {
     const clock = document.getElementById('clockContainer');
     const clockText = document.getElementById('clock');
     
+    // Reset all positions first
+    clock.style.top = '';
+    clock.style.bottom = '';
+    clock.style.left = '';
+    clock.style.transform = '';
+    
     switch(currentBackgroundIndex) {
         case 0:
             clock.style.bottom = '193px';
@@ -47,18 +53,11 @@ function updateClock(){
     let hours = now.getHours()
     const meridian = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12 || 12;
-    hours = hours.toString() // Convert to 12-hour format
+    hours = hours.toString();
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const timeString = `${hours}:${minutes} ${meridian}`;
     document.getElementById("clock").textContent = timeString;
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    setRandomBackground();
-    setClockPosition();
-    updateClock();
-    setInterval(updateClock, 1000);
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     setRandomBackground();
@@ -72,4 +71,38 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('open');
     });
+
+    // Fade in the body after setup
+    document.body.classList.add('loaded');
+    
+    // Set up the background shuffle button
+    const BgShuffle = document.getElementById('BgShuffle');
+    const bgFadeOverlay = document.getElementById('bg-fade-overlay');
+
+    BgShuffle.addEventListener('click', () => {
+    // Pick a new background index that's different from the current one
+    let nextIndex;
+    do {
+        nextIndex = Math.floor(Math.random() * backgrounds.length);
+    } while (nextIndex === currentBackgroundIndex && backgrounds.length > 1);
+
+    // Set overlay to new background and fade in
+    bgFadeOverlay.style.backgroundImage = `url(${backgrounds[nextIndex]})`;
+    bgFadeOverlay.style.opacity = '1';
+
+    // Fade out clock
+    const clockContainer = document.getElementById('clockContainer');
+    clockContainer.style.opacity = '0';
+
+    setTimeout(() => {
+        // Change background and move clock (with reflection) while invisible
+        currentBackgroundIndex = nextIndex;
+        document.body.style.backgroundImage = `url(${backgrounds[currentBackgroundIndex]})`;
+        setClockPosition();
+
+        // Fade out overlay and fade in clock at new position
+        bgFadeOverlay.style.opacity = '0';
+        clockContainer.style.opacity = '1';
+    }, 1500); // Match the CSS transition
+});
 });

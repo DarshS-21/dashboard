@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="bg-fade-overlay"></div>
     <div id="clockContainer">
         <div id="clock">00:00 AM</div>
     </div>
     <div id="sidebar">
         <button id="sidebarToggle" aria-label="Open menu">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                <rect y="5" width="28" height="3" rx="1.5" fill="#fff"/>
+            <svg id="sidebarIcon" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect y="2" width="28" height="3" rx="1.5" fill="#fff"/>
                 <rect y="12.5" width="28" height="3" rx="1.5" fill="#fff"/>
-                <rect y="20" width="28" height="3" rx="1.5" fill="#fff"/>
+                <rect y="23" width="28" height="3" rx="1.5" fill="#fff"/>
             </svg>
         </button>
         <div id="sidebarContent">
@@ -30,6 +31,18 @@
             </ul>
         </div>
     </div>
+    <div id="BgShuffle">
+    <button id="shuffleButton">
+      <svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="shuffleIconTitle" stroke="#fff" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none">
+            <title id="shuffleIconTitle">Shuffle</title>
+            <path d="M21 16.0399H17.7707C15.8164 16.0399 13.9845 14.9697 12.8611 13.1716L10.7973 9.86831C9.67384 8.07022 7.84196 7 5.88762 7L3 7"></path>
+            <path d="M21 7H17.7707C15.8164 7 13.9845 8.18388 12.8611 10.1729L10.7973 13.8271C9.67384 15.8161 7.84196 17 5.88762 17L3 17"></path>
+            <path d="M19 4L22 7L19 10"></path>
+            <path d="M19 13L22 16L19 19"></path>
+        </svg>
+        Shuffle Background
+    </button>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
